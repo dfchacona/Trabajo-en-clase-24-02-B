@@ -14,37 +14,55 @@ public class Estudiante {
     private String apellido; 
     private int codigo; 
     private double promedio;
-    private Curso [] cursos; 
+    public Curso [] cursos; 
     private int cursosInscritos; 
     
 public Estudiante(String nombre, String apellido, int codigo){
+    this.cursos= new Curso[5];
     this.nombre=nombre; 
     this.apellido=apellido; 
     this.codigo=codigo; 
 }    
 
-public void registrarCursos (String nombre, int codigo, int numeroCreditos, Curso [] cursos){
-
+public void registrarCursos (String nombre, int codigo, int numeroCreditos){
+        
         this.cursos[this.cursosInscritos]=new Curso(nombre,codigo,numeroCreditos);
         this.cursosInscritos++;
 }
 
-public boolean comprobarCupo (int codigo){
-    boolean cupoInscrito=false; 
-    for(int i=0; i<5; i++){
-        Curso c = this.cursos[i];
-        if (c.getCodigo()==codigo){
-            cupoInscrito=true;
+public void consultarCurso (int codigo){
+       int i=0; 
+       while (i<this.cursosInscritos){
+           Curso c= this.cursos[i];
+           if (c.getCodigo()==codigo){
+               System.out.println("El nombre del curso es: "+c.getNombre());
+               break; 
+           }
+           i++;
+       }
+}
+
+public void consultarInscripcion (int codigo){
+    int a=0; 
+    for (int i = 0; i < 5; i++) {
+        Curso c=this.cursos[i];
+        if(c.getCodigo()==codigo){
+            System.out.println("El estudiante si esta inscrito");
+            a=1;
             break;
+            
+            
         }
     }
-    return cupoInscrito;         
+    if(a==0){
+        System.out.println("El estudiante no esta inscrito");
+    }
 }
 
 public void calcularPromedio(){
     double notaTotal=0;
     int totalCreditos=0;
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 5; i++) {
        Curso c= this.cursos[i];
        notaTotal=notaTotal+(c.getNota()*c.getNumCreditos()); 
        totalCreditos=totalCreditos+c.getNumCreditos(); 

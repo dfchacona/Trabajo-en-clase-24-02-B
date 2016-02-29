@@ -38,4 +38,7 @@ public class Curso {
     public int getNumCreditos(){
         return this.numeroCreditos;
     }
+    public String getNombre(){
+        return this.nombre;
+    }
 }
