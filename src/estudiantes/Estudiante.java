@@ -25,11 +25,13 @@ public Estudiante(String nombre, String apellido, int codigo){
 }    
 
 public void registrarCursos (String nombre, int codigo, int numeroCreditos){
-        
+        if(this.cursosInscritos<6){
         this.cursos[this.cursosInscritos]=new Curso(nombre,codigo,numeroCreditos);
         this.cursosInscritos++;
+        }else{
+            System.out.println("Cursos registrados");
+        }
 }
-
 public void consultarCurso (int codigo){
        int i=0; 
        while (i<this.cursosInscritos){
@@ -62,7 +64,7 @@ public void consultarInscripcion (int codigo){
 public void calcularPromedio(){
     double notaTotal=0;
     int totalCreditos=0;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < this.cursosInscritos; i++) {
        Curso c= this.cursos[i];
        notaTotal=notaTotal+(c.getNota()*c.getNumCreditos()); 
        totalCreditos=totalCreditos+c.getNumCreditos(); 
@@ -81,6 +83,18 @@ public boolean periodoPrueba(){
    }
     return periodoPrueba; 
 }
+
+    public int getCursosInscritos() {
+        return cursosInscritos;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
 
 }
 

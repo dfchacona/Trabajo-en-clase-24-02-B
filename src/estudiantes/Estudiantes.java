@@ -30,7 +30,7 @@ public class Estudiantes {
         int eleccion=1; 
         do{
             System.out.println("Ingrese: "
-                    + "\n 1. Para registrar los cursos"
+                    + "\n 1. Para registrar curso"
                     + "\n 2. Para asignar las notas"
                     + "\n 3. Para calcular el promedio"
                     + "\n 4. Para consultar el nombre de un curso"
@@ -41,7 +41,7 @@ public class Estudiantes {
             switch(eleccion){
                 
         case(1):    
-        for (int i = 0; i < 5; i++) {
+        
             
         System.out.println("Ingrese nombre de la materia");
         String nombreM= lectura.next();
@@ -51,14 +51,15 @@ public class Estudiantes {
         int numeroCreditos= lectura.nextInt();  
         e1.registrarCursos(nombreM, codigoM, numeroCreditos);
             
-        }
+        
         break; 
         case(2):
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < e1.getCursosInscritos(); i++) {
             Curso c1=e1.cursos[i];
             System.out.println("Ingrese nota de "+c1.getNombre()+" : ");
             double nota=lectura.nextDouble();
             c1.asignarNota(nota);
+            e1.calcularPromedio();
         }
         break; 
         case(3):
@@ -79,7 +80,11 @@ public class Estudiantes {
         case(6):
         
         
-        System.out.println(e1.periodoPrueba());
+        if (e1.periodoPrueba()==true){
+         System.out.println("El estudiante "+e1.getNombre()+" "+e1.getApellido()+" esta en periodo de prueba");
+        }else{
+            System.out.println("El estudiante "+e1.getNombre()+" "+e1.getApellido()+" no esta en periodo de prueba");
+        }
         break; 
         }
     }while (eleccion!=0);
